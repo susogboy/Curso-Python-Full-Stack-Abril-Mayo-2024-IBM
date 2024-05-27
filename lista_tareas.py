@@ -1,3 +1,4 @@
+# lista_tareas.py
 from tarea import Tarea
 
 class ListaDeTareas:
@@ -27,6 +28,18 @@ class ListaDeTareas:
             for indice, tarea in enumerate(self.tareas):
                 # Muestra el índice y la descripción de cada tarea
                 print(f"{indice}. {tarea}")
+
+    def mostrar_tareas_pendientes(self):
+        # Muestra solo las tareas pendientes en la lista junto con su índice
+        tareas_pendientes = [(indice, tarea) for indice, tarea in enumerate(self.tareas) if not tarea.completada]
+        if not tareas_pendientes:
+            print("No hay tareas pendientes.")
+            return False
+        else:
+            print("Tareas pendientes:")
+            for indice, tarea in tareas_pendientes:
+                print(f"{indice}. {tarea}")
+            return True
 
     def eliminar_tarea(self, posicion):
         # Elimina una tarea específica de la lista, basada en su posición

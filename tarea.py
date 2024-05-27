@@ -1,3 +1,4 @@
+# tarea.py
 class Tarea:
     def __init__(self, descripcion):
         # Inicializa la tarea con la descripción proporcionada y establece su estado como no completada

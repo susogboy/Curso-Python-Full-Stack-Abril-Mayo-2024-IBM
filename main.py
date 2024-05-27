@@ -1,3 +1,4 @@
+# main.py
 from lista_tareas import ListaDeTareas
 
 def mostrar_menu():
@@ -30,23 +31,28 @@ def main():
             lista_de_tareas.agregar_tarea(descripcion)
         elif opcion == 2:
             # Marcar tarea como completada
-            try:
-                posicion = int(input("Ingrese la posición de la tarea a completar: "))
-                lista_de_tareas.marcar_tarea_como_completada(posicion)
-            except ValueError:
-                # Maneja el error si el usuario ingresa un valor no numérico
-                print("Error: Por favor, ingrese un número válido.")
+            if lista_de_tareas.mostrar_tareas_pendientes():
+                try:
+                    posicion = int(input("Ingrese la posición de la tarea a completar: "))
+                    lista_de_tareas.marcar_tarea_como_completada(posicion)
+                except ValueError:
+                    # Maneja el error si el usuario ingresa un valor no numérico
+                    print("Error: Por favor, ingrese un número válido.")
         elif opcion == 3:
             # Mostrar todas las tareas
             lista_de_tareas.mostrar_tareas()
         elif opcion == 4:
             # Eliminar tarea
-            try:
-                posicion = int(input("Ingrese la posición de la tarea a eliminar: "))
-                lista_de_tareas.eliminar_tarea(posicion)
-            except ValueError:
-                # Maneja el error si el usuario ingresa un valor no numérico
-                print("Error: Por favor, ingrese un número válido.")
+            lista_de_tareas.mostrar_tareas()
+            if lista_de_tareas.tareas:
+                try:
+                    posicion = int(input("Ingrese la posición de la tarea a eliminar: "))
+                    lista_de_tareas.eliminar_tarea(posicion)
+                except ValueError:
+                    # Maneja el error si el usuario ingresa un valor no numérico
+                    print("Error: Por favor, ingrese un número válido.")
+            else:
+                print("No hay tareas para eliminar.")
         elif opcion == 5:
             # Salir del programa
             print("Saliendo del programa. ¡Hasta luego!")
